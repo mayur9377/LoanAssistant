@@ -10,6 +10,9 @@ The loan assitant also gives the brief summary of the loan amount being granted 
 <img src="loan3.png" width=600 height=350><br><br>
 <img src="loan4.png" width=600 height=350><br><br>
 Moreover, a user can also generate detailed loan statement that includes all information about the monthly installments along with their due dates and a transaction summary at the end.<br><br>
-<img src="loan5.png" width=600 height=350><br><br>
-<img src="loan6.png" width=600 height=350><br><br>
-A user can click on ***New Loan Analysis*** to compute and generate new loan statement.
+<img src="loan7.png" width=600 height=350><br><br>
+<img src="loan8.png" width=600 height=350><br><br>
+A user can click on ***New Loan Analysis*** to compute and generate new loan statement.<br><br>
+
+There is also an option to generate ***PDF*** of the whole loan statement which will be saved by default in user's Downloads folder.<br><br>
+<img src="loan9.png" width=600 height=350><br><br>
