@@ -1,9 +1,15 @@
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Insets;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import javax.swing.JTextField;
 import org.apache.commons.lang3.time.DateUtils;
@@ -360,7 +366,7 @@ public class LoanAssistant extends javax.swing.JFrame{
          loanButton.setEnabled(false);
          loan_statement.setEnabled(false);
          loanBal.requestFocus();
-        
+        loan_statement.setText("Generate Loan Statement");
     }//GEN-LAST:event_loanButtonActionPerformed
 
     private void computeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeActionPerformed
@@ -531,7 +537,9 @@ public class LoanAssistant extends javax.swing.JFrame{
     private void loan_statementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loan_statementActionPerformed
         // TODO add your handling code here:
         //JScrollPane jScrollPane=new JScrollPane(textArea1);
-        loan_statement.setEnabled(false);
+        //loan_statement.setEnabled(false);
+        if(loan_statement.getText().toString().equals("Generate Loan Statement"))
+        {
         textArea1.setText("");
         
         Date temp_date=jDateChooser1.getDate();
@@ -557,6 +565,36 @@ public class LoanAssistant extends javax.swing.JFrame{
         textArea1.append("Amount: Rs "+new DecimalFormat("0.00").format((months-1)*payment+finalPayment)+"\n\n");
         textArea1.append("Total Amount (including interest):\nRs "+new DecimalFormat("0.00").format((months-1)*payment+finalPayment));
         textArea1.append("\n"+"Interest Paid: Rs "+new DecimalFormat("0.00").format((months-1)*payment+finalPayment-bal));
+        loan_statement.setText("Generate statement PDF");
+        }
+        else
+        {
+            Document doc = new Document();  
+try  
+{  
+//generate a PDF at the specified location  
+PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(System.getProperty("user.home")+"\\Downloads\\loan_statement.pdf"));  
+//System.out.println("PDF created.");  
+//opens the PDF  
+doc.open();  
+//adds paragraph to the PDF file  
+doc.add(new Paragraph(textArea1.getText()));   
+//close the PDF file  
+doc.close();  
+//closes the writer  
+writer.close();  
+}   
+catch (DocumentException e)  
+{  
+e.printStackTrace();  
+}   
+catch (FileNotFoundException e)  
+{  
+e.printStackTrace();  
+}
+    loan_statement.setEnabled(false);
+    jOptionPane1.showConfirmDialog(null,"Your loan statement PDF has been generated successfully.\nGo to Downloads and check loan_statement.pdf","Loan Assistant",jOptionPane1.DEFAULT_OPTION,jOptionPane1.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loan_statementActionPerformed
 
     /**
