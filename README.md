@@ -16,3 +16,5 @@ A user can click on ***New Loan Analysis*** to compute and generate new loan sta
 
 There is also an option to generate ***PDF*** of the whole loan statement which will be saved by default in user's Downloads folder.<br><br>
 <img src="loan9.png" width=600 height=350><br><br>
+For the purpose of PDF creation, ***iText Api*** is used which is a powerful open-source Java library that deals with PDFs.<br>
+Documentation can be found [here](https://itextpdf.com/en/resources/api-documentation).
